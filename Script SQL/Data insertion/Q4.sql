@@ -3,7 +3,17 @@
 ------------------------------------------------------------
 -- Insertion of 15 lines of data for each table
 ------------------------------------------------------------
+SET CONSTRAINTS ALL DEFERRED;
 
+ALTER TABLE public.Pages
+	ALTER CONSTRAINT Pages_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
+ALTER TABLE public.Publications
+	ALTER CONSTRAINT Publications_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
+ALTER TABLE public.Registration_historical 
+	ALTER CONSTRAINT Publications_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
 INSERT INTO discuss(nickname, chat_ID)
 VALUES('Kevin75', 1),
 	  ('Kevin69', 2),
@@ -207,4 +217,3 @@ VALUES('Kevin75', '12345', 'Kevin Barbier', 'barbierkev@outlook.com', '061889768
 	  ('Nico73', '12345', 'Nicolas Paolini', 'nicolas.paolini@outlook.com', '0628492369', '1997-07-07', 'Male', 'Friend', 'Spain', 'Madrid', '2017-09-09', 'Coco86'),
 	  ('Domi74', '12345', 'Dominique Bérange', 'paulin.assileau@gmail.com', '0616891685', '1986-02-03', 'Female', 'Engaged', 'France', 'Nice', '2019-09-09', 'Coco86'),
 	  ('Louis96', '12345', 'Louis Patria', 'louis.patria@outlook.com', '0679591681', '1984-04-30', 'Male', 'Engaged', 'France', 'Lille', '2019-12-06', 'Zupa29');
-	  

@@ -1,16 +1,3 @@
--- Database: Lab_1
-
--- DROP DATABASE "Lab_1";
-
-CREATE DATABASE "Lab_1"
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'French_France.1252'
-    LC_CTYPE = 'French_France.1252'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-	
 -- Question 3 :  Tables creation
 
 ------------------------------------------------------------
@@ -145,32 +132,45 @@ CREATE TABLE public.Love_publication(
 	CONSTRAINT Love_publication_PK PRIMARY KEY (publication_ID,nickname)
 );
 
+	
 ALTER TABLE public.Users
 	ADD CONSTRAINT Users_Users0_FK
 	FOREIGN KEY (nickname_Users)
 	REFERENCES public.Users(nickname);
 
+	
 ALTER TABLE public.Pages
 	ADD CONSTRAINT Pages_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
+
 
 ALTER TABLE public.Publications
 	ADD CONSTRAINT Publications_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
 
-ALTER TABLE public.Registration_historical
+ALTER TABLE public.Registration_historical 
 	ADD CONSTRAINT Publications_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
-	
+
 -- Question 4 :  Data insertion
 
 ------------------------------------------------------------
 -- Insertion of 15 lines of data for each table
 ------------------------------------------------------------
+SET CONSTRAINTS ALL DEFERRED;
 
+ALTER TABLE public.Pages
+	ALTER CONSTRAINT Pages_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
+ALTER TABLE public.Publications
+	ALTER CONSTRAINT Publications_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
+ALTER TABLE public.Registration_historical 
+	ALTER CONSTRAINT Publications_Users0_FK DEFERRABLE INITIALLY IMMEDIATE;
+	
 INSERT INTO discuss(nickname, chat_ID)
 VALUES('Kevin75', 1),
 	  ('Kevin69', 2),

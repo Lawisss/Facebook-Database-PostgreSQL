@@ -132,24 +132,25 @@ CREATE TABLE public.Love_publication(
 	CONSTRAINT Love_publication_PK PRIMARY KEY (publication_ID,nickname)
 );
 
+	
 ALTER TABLE public.Users
 	ADD CONSTRAINT Users_Users0_FK
 	FOREIGN KEY (nickname_Users)
 	REFERENCES public.Users(nickname);
 
+	
 ALTER TABLE public.Pages
 	ADD CONSTRAINT Pages_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
+
 
 ALTER TABLE public.Publications
 	ADD CONSTRAINT Publications_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
 
-ALTER TABLE public.Registration_historical
+ALTER TABLE public.Registration_historical 
 	ADD CONSTRAINT Publications_Users0_FK
 	FOREIGN KEY (nickname)
 	REFERENCES public.Users(nickname);
-	  
-
