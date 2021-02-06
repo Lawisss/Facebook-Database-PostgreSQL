@@ -1,1 +1,1 @@
-# Facebook Database (E/R Diagram, MCD, SQL queries) with PostgreSQL
+# Facebook Database (Diagrams + SQL queries) with PostgreSQL
