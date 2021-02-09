@@ -114,9 +114,10 @@ WHERE AVG(like_number) > 5 ORDER BY AVG(like_number);
 --------------------------------------------------------------------------
 -- [14] See the average number of publications containing words " Trump ". 
 --------------------------------------------------------------------------
-SELECT AVG(COUNT(*)) 
-FROM Publications 
-WHERE text_publi LIKE 'Trump';
+SELECT AVG(Trump) / AVG(Publications)
+FROM
+(SELECT (SELECT COUNT(publication_ID) FROM Publications WHERE text_publi LIKE '%Trump%') AS Trump,
+        (SELECT COUNT(publication_ID) FROM Publications) AS Publications)AS Counter;
 
 ----------------------------------------------------------------------
 -- [15] Which users have published on the pages of all their friends ? 
@@ -136,6 +137,11 @@ FROM Link INNER JOIN Users ON Users.nickname = Link.nickname;
 -------------------------------------------------------------------------------------
 -- [17] What is the list of "friends" of "Kevin69" that loved all its publications ?
 -------------------------------------------------------------------------------------
+
+SELECT Friend.*
+FROM Friend
+INNER JOIN love_publication ON love_publication.nickname = Friend.nickname
+WHERE love_publication.nickname = 'Kevin69' AND publication_ID
 
 ------------------------------------------------------------------------------------------
 -- [18] For each publication, display the level and the title of the original publication.  

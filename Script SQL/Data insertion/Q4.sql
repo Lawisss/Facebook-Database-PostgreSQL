@@ -46,7 +46,9 @@ VALUES('Kevin75', 'Kevin69', '2020-08-13'),
 	  ('Zupa29', 'Domi74', '2021-01-01'),
 	  ('Nico73', 'Coco86', '2017-09-09'),
 	  ('Roger09', 'Kevin75', '2018-12-31'),
-	  ('Louis96', 'Zupa29', '2019-12-06');
+	  ('Louis96', 'Zupa29', '2019-12-06'),
+	  ('Lolo45', 'Kevin69', '2021-01-17'),
+	  ('Kevin69', 'Lolo45', '2021-01-17');
 
 INSERT INTO groupes(group_ID, group_status, group_name)
 VALUES(1, 'Private', 'Finance Quantitative'),
@@ -80,7 +82,9 @@ VALUES(1,1),
 	  (12,12),
 	  (13,13),
 	  (14,14),
-	  (15,15);
+	  (15,15),
+	  (5,16),
+	  (6,17);
 	  
 INSERT INTO love_pages(page_ID, nickname)
 VALUES(1,'Kevin75'),
@@ -114,7 +118,9 @@ VALUES(1,'Kevin75'),
 	  (12,'Coco86'),
 	  (13,'Sheguey26'),
 	  (14,'Dridri91'),
-	  (15,'Roger09');
+	  (15,'Roger09'),
+	  (18,'Dridri91'),
+	  (14,'Lolo45');
 
 INSERT INTO member_of(nickname, group_ID)
 VALUES('Kevin75',1),
@@ -130,8 +136,11 @@ VALUES('Kevin75',1),
 	  ('Dridri91', 11),
 	  ('Coco86', 12),
 	  ('Sheguey26', 13),
-	  ('Louis96', 14),
-	  ('Roger09', 15);
+	  ('Louis96', 5),
+	  ('Roger09', 14),
+	  ('Kevin75',2),
+	  ('Zupa29', 1),
+	  ('Dridri91', 14);
 	  
 INSERT INTO pages(page_ID, page_status, page_name, nickname)
 VALUES(1, 'Private', 'Oasis Page', 'Kevin75'),
@@ -182,7 +191,10 @@ VALUES(1, 'COVID-19 Conspiration','2005-09-25', 'Coronavirus is just a conspirac
 	  (12, 'COP21 a new project ?', '2014-03-15', 'Emmanuel Macron and Donald Trump disagreement', 1478, 'Coucou63'),
 	  (13, 'Lebron James the new GOAT ?', '2015-08-30', 'Lebron James made another Triple-double last night against Raptors', 7896, 'Coco86'),
 	  (14, 'Trump Eldorado', '2020-05-20', 'Trump left to South Florida after Biden Election', 7532, 'Kevin69'),
-	  (15, 'Trump for 2024', '2019-07-21', 'Trump will be elected in 2024', 159, 'Sheguey26');
+	  (15, 'Trump for 2024', '2019-07-21', 'Trump will be elected in 2024', 159, 'Sheguey26'),
+	  (16, 'COVID-19 Conspiration','2005-09-25', 'Coronavirus is just a conspiracy to control us ! Dont fall for it , dont do the vaccine or you will become a horse.', 97, 'Dridri91'),
+	  (17, 'COVID-19 Conspiration','2005-09-25', 'Coronavirus is just a conspiracy to control us ! Dont fall for it , dont do the vaccine or you will become a horse.', 63, 'Dridri91'),
+	  (18, 'Trump Eldorado', '2020-05-20', 'Trump left to South Florida after Biden Election', 46, 'Kevin69');
 	  
 INSERT INTO registration_historical(registration_date, nickname)
 VALUES('2019-08-08 04:05:06', 'Kevin69'),
