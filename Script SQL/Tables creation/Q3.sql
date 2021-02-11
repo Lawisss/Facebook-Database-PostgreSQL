@@ -38,8 +38,6 @@ CREATE TABLE public.Users(
 	status              VARCHAR (20) NOT NULL,
 	country             VARCHAR (50) NOT NULL,
 	city_of_residence   VARCHAR (50) NOT NULL,
-	start_date          DATE  NOT NULL,
-	nickname_Users      VARCHAR (50),
 	CONSTRAINT Users_PK PRIMARY KEY (nickname)
 );
 
@@ -108,10 +106,10 @@ CREATE TABLE public.Member_of(
 -- Table: Friend
 ------------------------------------------------------------
 CREATE TABLE public.Friend(
-	nickname         VARCHAR (50) NOT NULL,
-	nickname_Users   VARCHAR (50) NOT NULL,
+	nickname_Users1         VARCHAR (50) NOT NULL,
+	nickname_Users2   VARCHAR (50) NOT NULL,
 	start_date       DATE  NOT NULL,
-	CONSTRAINT Friend_PK PRIMARY KEY (nickname,nickname_Users)
+	CONSTRAINT Friend_PK PRIMARY KEY (nickname_Users1,nickname_Users2)
 );
 
 ------------------------------------------------------------
@@ -132,13 +130,6 @@ CREATE TABLE public.Love_publication(
 	CONSTRAINT Love_publication_PK PRIMARY KEY (publication_ID,nickname)
 );
 
-	
-ALTER TABLE public.Users
-	ADD CONSTRAINT Users_Users0_FK
-	FOREIGN KEY (nickname_Users)
-	REFERENCES public.Users(nickname);
-
-	
 ALTER TABLE public.Pages
 	ADD CONSTRAINT Pages_Users0_FK
 	FOREIGN KEY (nickname)

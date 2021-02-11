@@ -31,7 +31,7 @@ VALUES('Kevin75', 1),
 	  ('Nico73', 14),
 	  ('Roger09', 15);
 
-INSERT INTO friend(nickname, nickname_users, start_date)
+INSERT INTO friend(nickname_users1, nickname_users2, start_date)
 VALUES('Kevin75', 'Kevin69', '2020-08-13'),
 	  ('Kevin69', 'Dridri91', '2019-08-30'),
 	  ('Dridri91', 'Ousous42', '2020-08-11'),
@@ -213,19 +213,19 @@ VALUES('2019-08-08 04:05:06', 'Kevin69'),
 	  ('2001-10-05 05:14:59', 'Domi74'),
 	  ('1998-09-05 23:47:21', 'Louis96');
 	  
-INSERT INTO users(nickname, pwd, name_users, email, phone, date_of_birth, gender, status, country, city_of_residence, start_date, nickname_users)
-VALUES('Kevin75', '12345', 'Kevin Barbier', 'barbierkev@outlook.com', '0618897687', '1991-08-09', 'Male', 'Friend', 'England', 'London', '2020-08-13', 'Kevin69'),
-	  ('Dridri91', '12345', 'Drianna Barketti', 'barkdri@gmail.com', '0623898084', '1995-03-21', 'Female', 'Friend', 'France', 'Sochaux', '2020-08-11', 'Ousous42'),
-	  ('Roger09', '12345', 'Roger Malreaux', 'malreaux.roger@sfr.fr', '0723802017', '1986-01-22', 'Male', 'Friend', 'France', 'Lyon', '2018-12-31', 'Kevin75'),
-	  ('Coco86', '12345', 'Corrine Seaux', 'cocoricocs@gmail.com', '0633402057', '1989-03-14', 'Female', 'Friend', 'France', 'Valenciennes', '2019-02-20','Nico73'),
-	  ('Ousous42', '12345', 'Oussamia Ben Arji', 'benarji.ous@gmail.com', '0739852028', '1999-01-11', 'Female', 'Friend', 'Brazil', 'Rio de Janiero','2021-03-14', 'Momo98'),
-	  ('Kevin69','12345','Kevin Daguerre', 'kevindag69@hotmail.fr', '0664785123', '2006-09-25', 'Male','Friend', 'France', 'Paris', '2019-08-30', 'Dridri91'),
-	  ('Sheguey26', '12345','Solene Hoche','soso26@outlook.fr', '0798635987', '2002-11-07' ,'Female','Friend', 'France','Marseille', '2020-08-09', 'Nico73'),
-	  ('Coucou63','12345', 'Caroline Poulain', 'poulaincaro@gmail.com', '0674124566', '2000-11-06','Female','Friend', 'Spain','Madrid', '2018-12-02', 'Palu79'),
-	  ('Lolo45', '12345', 'Laurine Doguemont', 'doguemont_laurine@gmail.com', '0699853421', '2005-06-06', 'Female', 'Friend', 'France','Lille', '2020-11-17', 'Sheguey26'),
-	  ('Zupa29', '12345', 'Zoe Puchala', 'puchala29@hotmail.fr', '0778431688', '2001-08-06', 'Female', 'Friend', 'France', 'Strasbourg', '2021-01-01', 'Domi74'),
-	  ('Palu79', '12345', 'Paulin Assileau', 'paulin.assileau@sfr.fr', '0626818687', '1990-07-03', 'Male', 'Friend', 'Brazil', 'Rio de Janeiro', '2017-07-08', 'Coucou63'),
-	  ('Momo98', '12345', 'Mohamed Merkaoui', 'mohamed.merkaoui@gmail.com', '0618897777', '1998-09-24', 'Male', 'Friend', 'France', 'Paris', '2020-01-01', 'Ousous42'),
-	  ('Nico73', '12345', 'Nicolas Paolini', 'nicolas.paolini@outlook.com', '0628492369', '1997-07-07', 'Male', 'Friend', 'Spain', 'Madrid', '2017-09-09', 'Coco86'),
-	  ('Domi74', '12345', 'Dominique Bérange', 'paulin.assileau@gmail.com', '0616891685', '1986-02-03', 'Female', 'Engaged', 'France', 'Nice', '2019-09-09', 'Coco86'),
-	  ('Louis96', '12345', 'Louis Patria', 'louis.patria@outlook.com', '0679591681', '1984-04-30', 'Male', 'Engaged', 'France', 'Lille', '2019-12-06', 'Zupa29');
+INSERT INTO users(nickname, pwd, name_users, email, phone, date_of_birth, gender, status, country, city_of_residence)
+VALUES('Kevin75', '12345', 'Kevin Barbier', 'barbierkev@outlook.com', '0618897687', '1991-08-09', 'Male', 'Friend', 'England', 'London'),
+	  ('Dridri91', '12345', 'Drianna Barketti', 'barkdri@gmail.com', '0623898084', '1995-03-21', 'Female', 'Friend', 'France', 'Sochaux'),
+	  ('Roger09', '12345', 'Roger Malreaux', 'malreaux.roger@sfr.fr', '0723802017', '1986-01-22', 'Male', 'Friend', 'France', 'Lyon'),
+	  ('Coco86', '12345', 'Corrine Seaux', 'cocoricocs@gmail.com', '0633402057', '1989-03-14', 'Female', 'Friend', 'France', 'Valenciennes'),
+	  ('Ousous42', '12345', 'Oussamia Ben Arji', 'benarji.ous@gmail.com', '0739852028', '1999-01-11', 'Female', 'Friend', 'Brazil', 'Rio de Janiero'),
+	  ('Kevin69','12345','Kevin Daguerre', 'kevindag69@hotmail.fr', '0664785123', '2006-09-25', 'Male','Friend', 'France', 'Paris'),
+	  ('Sheguey26', '12345','Solene Hoche','soso26@outlook.fr', '0798635987', '2002-11-07' ,'Female','Friend', 'France','Marseille'),
+	  ('Coucou63','12345', 'Caroline Poulain', 'poulaincaro@gmail.com', '0674124566', '2000-11-06','Female','Friend', 'Spain','Madrid'),
+	  ('Lolo45', '12345', 'Laurine Doguemont', 'doguemont_laurine@gmail.com', '0699853421', '2005-06-06', 'Female', 'Friend', 'France','Bordeaux'),
+	  ('Zupa29', '12345', 'Zoe Puchala', 'puchala29@hotmail.fr', '0778431688', '2001-08-06', 'Female', 'Friend', 'France', 'Strasbourg'),
+	  ('Palu79', '12345', 'Paulin Assileau', 'paulin.assileau@sfr.fr', '0626818687', '1990-07-03', 'Male', 'Friend', 'Brazil', 'Rio de Janeiro'),
+	  ('Momo98', '12345', 'Mohamed Merkaoui', 'mohamed.merkaoui@gmail.com', '0618897777', '1998-09-24', 'Male', 'Friend', 'France', 'Paris'),
+	  ('Nico73', '12345', 'Nicolas Paolini', 'nicolas.paolini@outlook.com', '0628492369', '1997-07-07', 'Male', 'Friend', 'Spain', 'Madrid'),
+	  ('Domi74', '12345', 'Dominique Bérange', 'paulin.assileau@gmail.com', '0616891685', '1986-02-03', 'Female', 'Engaged', 'France', 'Nice'),
+	  ('Louis96', '12345', 'Louis Patria', 'louis.patria@outlook.com', '0679591681', '1984-04-30', 'Male', 'Engaged', 'France', 'Lille');

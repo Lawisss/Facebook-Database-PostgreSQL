@@ -83,33 +83,39 @@ LIMIT 1;
 --------------------------------------------------------------------------------------------------------------------------
 -- [11] See which pages on average receive more than 5 "likes" per publication, ranked by the average of number of "like". 
 --------------------------------------------------------------------------------------------------------------------------
-SELECT Pages.Page_ID, Pages.Page_name
-FROM Pages
-INNER JOIN Publications ON Publications.Publication_ID = Pages.Page_ID
-INNER JOIN love_publication ON Publications.Publication_ID = love_publication.Publication_ID
-GROUP BY Pages.Page_ID
+SELECT page_name,AVG(like_number)
+FROM(SELECT pages.page_name,publications.like_number
+FROM pages
+INNER JOIN have ON pages.page_id=have.page_id
+INNER JOIN publications ON have.publication_id=publications.publication_id )AS like_number
+GROUP BY Page_name
 HAVING AVG(like_number) > 5
 ORDER BY AVG(like_number);
 
 ---------------------------------------------------------------------
 -- [12] For each page, display the publication with the most "likes". 
 ---------------------------------------------------------------------
-SELECT Pages.*
-FROM Pages
-JOIN Have ON Have.Page_ID = Pages.Page_ID
-JOIN Publications ON Have.Publication_ID = Publications.Publication_ID
-WHERE like_number >= 
-(SELECT MAX(like_number)
-FROM Publications)
-GROUP BY Pages.Page_ID;
+SELECT page_name, title, MAX
+FROM publications
+INNER JOIN (SELECT pages.page_name, MAX(publications.like_number)
+			FROM pages
+			INNER JOIN have ON pages.page_id=have.page_id
+			INNER JOIN publications ON have.publication_id=publications.publication_id
+			GROUP BY pages.page_name) AS test ON MAX=publications.like_number;
 
 --------------------------------------------------------------------------------------------------------------------------------------
 -- [13] Display the groups of which at least half the members have more than 5 "like" on average over the publications of their pages.
 --------------------------------------------------------------------------------------------------------------------------------------
-SELECT * 
-FROM Groupes 
-INNER JOIN Publications ON Groupes.group_ID  = Publicaton.group_ID 
-WHERE AVG(like_number) > 5 ORDER BY AVG(like_number);
+SELECT Groupes.group_name
+FROM Groupes
+INNER JOIN Member_of ON Groupes.group_ID  = Member_of.group_ID
+INNER JOIN Users ON Member_of.nickname = Users.nickname
+INNER JOIN Publications ON Users.nickname = Publications.nickname
+INNER JOIN Have ON Have.publication_ID = Publications.publication_ID
+INNER JOIN Pages ON Pages.page_ID = Have.page_ID
+WHERE AVG(nb) > 5 (SELECT like_number FROM Publications WHERE Pages.nickname = Member_of.nickname) AS nb
+GROUP BY Groupes.group_name
+HAVING COUNT(Member_of.nickname) >= COUNT(Member_of.nickname)/2;
 
 --------------------------------------------------------------------------
 -- [14] See the average number of publications containing words " Trump ". 
@@ -122,11 +128,15 @@ FROM
 ----------------------------------------------------------------------
 -- [15] Which users have published on the pages of all their friends ? 
 ----------------------------------------------------------------------
-SELECT * 
-FROM Users 
+SELECT Friend.nickname_Users2
+FROM Friend 
+INNER JOIN Users ON Users.nickname = Friend.nickname_Users1
 INNER JOIN Pages ON Users.nickname = Pages.nickname 
-INNER JOIN Publications ON Publications.page_ID = Pages.page_ID 
-WHERE MAX(DISTINCT Publications.Nickname) = COUNT(DISTINCT Publications.nickname);
+INNER JOIN Have ON Have.page_ID = Pages.page_ID 
+INNER JOIN Publications ON Publications.Publication_ID = Have.Publication_ID
+WHERE Publications.nickname = Friend.nickname_Users2
+GROUP BY  Friend.nickname_Users2
+HAVING COUNT(Have.Publication_ID) > ANY(SELECT Pages.Page_ID FROM Pages);
 
 ------------------------------------------------------------
 -- [16] Which users have 80% of their groups in common ? 
@@ -141,7 +151,7 @@ FROM Link INNER JOIN Users ON Users.nickname = Link.nickname;
 SELECT Friend.*
 FROM Friend
 INNER JOIN love_publication ON love_publication.nickname = Friend.nickname
-WHERE love_publication.nickname = 'Kevin69' AND publication_ID
+WHERE love_publication.nickname = 'Kevin69' AND publication_ID;
 
 ------------------------------------------------------------------------------------------
 -- [18] For each publication, display the level and the title of the original publication.  
