@@ -106,16 +106,15 @@ INNER JOIN (SELECT pages.page_name, MAX(publications.like_number)
 --------------------------------------------------------------------------------------------------------------------------------------
 -- [13] Display the groups of which at least half the members have more than 5 "like" on average over the publications of their pages.
 --------------------------------------------------------------------------------------------------------------------------------------
-SELECT Groupes.group_name
-FROM Groupes
-INNER JOIN Member_of ON Groupes.group_ID  = Member_of.group_ID
-INNER JOIN Users ON Member_of.nickname = Users.nickname
-INNER JOIN Publications ON Users.nickname = Publications.nickname
-INNER JOIN Have ON Have.publication_ID = Publications.publication_ID
-INNER JOIN Pages ON Pages.page_ID = Have.page_ID
-WHERE AVG(nb) > 5 (SELECT like_number FROM Publications WHERE Pages.nickname = Member_of.nickname) AS nb
-GROUP BY Groupes.group_name
-HAVING COUNT(Member_of.nickname) >= COUNT(Member_of.nickname)/2;
+SELECT nickname,AVG(like_number)
+FROM (SELECT page_name,pages.nickname,pages.page_id,have.publication_id,publications.like_number
+	  FROM pages
+	  INNER JOIN have ON have.page_id = pages.page_id
+	  INNER JOIN publications ON publications.publication_id = have.publication_id
+	  GROUP BY pages.nickname,page_name,pages.page_id,have.publication_id,publications.like_number) AS test
+
+GROUP BY page_name,nickname,page_id
+HAVING avg(like_number)>100
 
 --------------------------------------------------------------------------
 -- [14] See the average number of publications containing words " Trump ". 
@@ -148,10 +147,15 @@ FROM Link INNER JOIN Users ON Users.nickname = Link.nickname;
 -- [17] What is the list of "friends" of "Kevin69" that loved all its publications ?
 -------------------------------------------------------------------------------------
 
-SELECT Friend.*
-FROM Friend
-INNER JOIN love_publication ON love_publication.nickname = Friend.nickname
-WHERE love_publication.nickname = 'Kevin69' AND publication_ID;
+SELECT nickname
+FROM(SELECT Love_publication.nickname,COUNT(publications.publication_id)
+	 FROM publications
+	 INNER JOIN Love_publication ON Love_publication.publication_id=publications.publication_id
+	 WHERE publications.nickname='Kevin69'
+	 GROUP BY Love_publication.nickname) AS test
+WHERE COUNT=(SELECT COUNT(publication_id)
+			 FROM publications
+			 WHERE nickname='Kevin69')
 
 ------------------------------------------------------------------------------------------
 -- [18] For each publication, display the level and the title of the original publication.  
