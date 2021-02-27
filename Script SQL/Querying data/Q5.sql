@@ -140,8 +140,6 @@ HAVING COUNT(Have.Publication_ID) > ANY(SELECT Pages.Page_ID FROM Pages);
 ------------------------------------------------------------
 -- [16] Which users have 80% of their groups in common ? 
 ------------------------------------------------------------
-SELECT Link.nickname 
-FROM Link INNER JOIN Users ON Users.nickname = Link.nickname;
 
 -------------------------------------------------------------------------------------
 -- [17] What is the list of "friends" of "Kevin69" that loved all its publications ?
